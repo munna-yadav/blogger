@@ -1,0 +1,28 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "style.css" %}">  
+{% block content %}
+
+<h2>Register Here</h2>
+<form method="post">
+    {% csrf_token %}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    <label for="username">Username</label>
+    {{ form.username }}
+    {{ form.username.errors }}
+
+    <label for="email">Email</label>
+    {{ form.email }}
+    {{ form.email.errors }}
+
+    <label for="password">Password</label>
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+
+    <label for="password2">Confirm Password</label>
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+    
+    <button class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

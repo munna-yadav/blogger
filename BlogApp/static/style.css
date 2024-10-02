@@ -1,0 +1,61 @@
+/* style.css */
+
+/* Style the body */
+body {
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+}
+
+/* Style the form container */
+form {
+    margin-left: 10vw;
+    width: 40vw;
+    background-color: #07051c;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style input fields */
+input[type="text"],
+input[type="password"] {
+    width: 33%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #0a1e2f;
+    border-radius: 4px;
+    background: #2e2e2e;
+    color: white;
+}
+
+/* Style the button */
+button {
+    background-color: #28a745; /* Green background */
+    color: white; /* White text */
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Full width */
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Style error messages */
+ul {
+    color: red; /* Red text for errors */
+}
+
+.form-input{
+    font-size: xx-large;
+}

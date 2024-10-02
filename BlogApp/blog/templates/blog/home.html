@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+
+{% for blog in blogs %}
+      
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}} </h5>
+          <p class="card-text">{{blog.created_at}}</p>
+          <p class = "card-text">{{ blog.description }}</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="{% url 'blog_deatil_view' blog.id %}" target="_blank" class="card-link">Read More</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+{% endfor %}
+
+{% endblock content %}
+
+

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>{{ blog.title }}</h1>
+    <p><strong>Published on:</strong> {{ blog.created_at }}</p>
+    <p>{{ blog.description }}</p>
+</div>
+{% endblock content %}

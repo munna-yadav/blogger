@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "style.css" %}">
+{% block content %}
+
+<h2>login here</h2>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <label for="username">Username</label>
+    {{ form.username }}
+    {{ form.username.errors }}
+
+    <label for="password">Password</label>
+    {{ form.password }}
+    {{ form.password.errors }}
+
+    <div>
+        {{ form.remember_me }}
+    </div>
+
+    <button class="btn btn-primary">Login</button>
+    
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+</form>
+<h3>Don't have an account? <a href="{% url "register" %}"><strong>Register here</strong></a></h3>
+{% endblock %}
