@@ -1,19 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .forms import UserCreationForm
-from django.contrib.auth import login
+from .forms import UserRegistrationForm
+from django.contrib.auth import login,logout
 from django.contrib import messages
 
 def home(request):
     return render(request,"layout.html")
 
-def test(request):
-    return render(request,'test.html')
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import login
-from django.contrib import messages
-from .forms import UserRegistrationForm  # Assuming you're using your custom form
 
 def register(request):
     if request.method == "POST":
@@ -21,7 +15,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, "User creation successful. You are now logged in.")
-            # login(request, user)
+            login(request, user)
             return redirect('home')
         else:
             messages.error(request,"error")
@@ -30,3 +24,8 @@ def register(request):
         form = UserRegistrationForm()
 
     return render(request, 'registration.html', {"form": form})
+
+
+def custom_logout(request):
+    logout(request)
+    return render(request, 'logout.html')
