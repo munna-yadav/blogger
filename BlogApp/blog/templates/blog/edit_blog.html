@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit blog{% endblock title %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary" method="post">edit</button>
+</form>
+<a class="btn btn-danger"href=" {% url "home" %}">cancel</a>
+{% endblock content %}

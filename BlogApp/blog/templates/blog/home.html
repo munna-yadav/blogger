@@ -1,22 +1,24 @@
-{% extends "layout.html" %}
-{% load static %}
+{% extends "layout.html" %} {% load static %} <link rel="stylesheet" href=" {%
+static "style.css" %}"> {% block content %}
 
-{% block content %}
+<div class="container-row d-flex gap-3 flex-wrap">
+  {% for blog in blogs %}
 
-{% for blog in blogs %}
-      
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{blog.title}} </h5>
-          <p class="card-text">{{blog.created_at}}</p>
-          <p class = "card-text">{{ blog.description }}</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="{% url 'blog_deatil_view' blog.id %}" target="_blank" class="card-link">Read More</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-{% endfor %}
+  <div class="card" style="width: 18rem; max-height: 400px;"> 
+    {% if blog.image %}
+    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="card-img-top" style="max-height: 150px; object-fit: cover;">
+    
+    {% endif %}
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ blog.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">By {{ blog.user }}</h6> <!-- Subtitle for author -->
+      <p class="card-text text-muted">{{ blog.created_at|date:"M j, Y" }}</p> <!-- Date styled as text-muted -->
+      <a href="{% url "blog_detail_view" blog.id %}" >Read More</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
 
 {% endblock content %}
-
-

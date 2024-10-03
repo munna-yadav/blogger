@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1  class=" text-center mt-10" >create your blog</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-primary" method="post">create</button>
+</form>
+
+<a href="{% url "home" %}"> back to home</a>
+
+{% endblock %}
