@@ -1,22 +1,26 @@
 {% extends "layout.html" %} 
 {% load static %}
 <link rel="stylesheet" href=" {% static 'style.css' %}">
+
+
 {% block content %}
 
-<div class="detail-container">
+<div class="detail-container" style="margin:30px 100px; ">
   <h1>{{ blog.title }}</h1>
   <strong>By:{{ blog.user }}</strong>
   <p class="card-subtitle mb-2 text-muted">
     <strong>Published on:</strong> {{ blog.created_at|date:"F j, Y" }}
   </p>
   {% if blog.image %}
-  <img src="{{blog.image.url}}" alt="image" />
+  <img src="{{blog.image.url}}" alt="image" class="image" style="max-height: 270px; object-fit: cover; " />
 
   {% endif %}
   <p>{{ blog.description }}</p>
   {% if blog.user == user %}
-  <a class="btn btn-primary">Edit</a>
-  <a class="btn btn-danger">Delete</a>
+  <a class="btn btn-secondary" href="{% url "edit_blog" blog.id %}" >Edit</a>
+  <a class="btn btn-danger" href="{% url "delete_blog" blog.id %}">Delete</a>
   {% endif %}
 </div>
 {% endblock content %}
+
+{% block layout %}{% endblock layout %}

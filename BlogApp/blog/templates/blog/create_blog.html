@@ -1,11 +1,20 @@
 {% extends "layout.html" %}
 
+{% block title %}Create Blog{% endblock title %}Create Blog
 {% block content %}
 <h1  class=" text-center mt-10" >create your blog</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
-    {{form.as_p}}
+    <label for="title">Title</label><br>
+    {{form.title}}
+    <label for="theme">Short Description</label>
+    {{form.theme}}
+    <label for="description">Description</label>
+    {{form.description}}
+    <br>
+    <label for="image">image</label>
+    {{form.image}}
     <button class="btn btn-primary" method="post">create</button>
 </form>
 
