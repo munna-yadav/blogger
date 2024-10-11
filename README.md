@@ -49,16 +49,7 @@ The project is organized into two Django apps: `blog` and `BlogApp`. The `blog` 
 
 ## Setup Instructions
 
-1. **Clone the repository**:
-   
-   ```bash
-   git clone git@github.com:munna-yadav/blogger.git
-   ```
-   ```bash
-   cd blogger/BlogApp
-   ```
-
-2. **Create a virtual environment** and activate it:
+1. **Create a virtual environment** and activate it:
 
    ```bash
    python -m venv venv
@@ -67,6 +58,13 @@ The project is organized into two Django apps: `blog` and `BlogApp`. The `blog` 
    ```bash
    source venv/bin/activate
     # On Windows, use venv\Scripts\activate
+2. **Clone the repository**:
+   
+   ```bash
+   git clone git@github.com:munna-yadav/blogger.git
+   ```
+   ```bash
+   cd blogger/BlogApp
    ```
 
 3. **Install dependencies**:
@@ -81,6 +79,9 @@ The project is organized into two Django apps: `blog` and `BlogApp`. The `blog` 
 
    - Run database migrations:
 
+     ```bash
+     python manage.py makemigrations
+     ```
      ```bash
      python manage.py migrate
      ```
