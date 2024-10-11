@@ -1,16 +1,17 @@
 {% extends "layout.html" %} 
 {% load static %}
 <link rel="stylesheet" href=" {% static 'style.css' %}">
+<link rel="shortcut icon" href="{{blog.image.url}}" type="image/x-icon">
 
-
+{% block title %}{{blog.title}}{% endblock title %}
 {% block content %}
 
 <div class="detail-container" style="margin:30px 100px; ">
   <h1>{{ blog.title }}</h1>
-  <strong>By:{{ blog.user }}</strong>
+  <strong>By:{{ blog.user.username }}</strong>
   <p class="card-subtitle mb-2 text-muted">
     <strong>Published on:</strong> {{ blog.created_at|date:"F j, Y" }}
-  </p>
+  </p>  
   {% if blog.image %}
   <img src="{{blog.image.url}}" alt="image" class="image" style="max-height: 270px; object-fit: cover; " />
 
@@ -19,6 +20,30 @@
   {% if blog.user == user %}
   <a class="btn btn-secondary" href="{% url "edit_blog" blog.id %}" >Edit</a>
   <a class="btn btn-danger" href="{% url "delete_blog" blog.id %}">Delete</a>
+  {% endif %}
+</div>
+<div class="comment">
+  <!-- Blog content here -->
+
+  <h3>Comments:</h3>
+  <ul>
+    {% for comment in blog.comments.all %}
+    <div class="commenter">
+      <strong>{{comment.user.username}}-{{ comment.created_at|date:"F j," }}</strong>
+    </div>
+     {{ comment.comment }}
+    {% empty %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
+
+ {% comment %} comment form {% endcomment %}
+  {% if user.is_authenticated %}
+    <form method="post" action ="{% url 'create_comment' blog.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary">Add Comment</button>
+    </form>
   {% endif %}
 </div>
 {% endblock content %}

@@ -16,10 +16,10 @@ body {
 form {
     margin-left: 10vw;
     width: 40vw;
-    background-color: #07051c;
+    background-color: #000c2a; /* Darker background for dark theme */
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow for depth */
     display: flex;
     flex-direction: column;
 }
@@ -27,20 +27,25 @@ form {
 /* Style input fields */
 input[type="text"],
 input[type="password"] {
-    width: 33%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #0a1e2f;
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #333; /* Darker border for input fields */
     border-radius: 4px;
-    background: #2e2e2e;
-    color: white;
+    background: #444; /* Slightly lighter background to distinguish input area */
+    color: #e0e0e0; /* Light text color for readability */
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #bbb; /* Lighter placeholder text */
 }
 
 /* Style the button */
 button {
-    background-color: #28a745; /* Green background */
-    color: white; /* White text */
-    padding: 10px;
+    background-color: #4caf50; /* Soft green background */
+    color: #fff; /* White text */
+    padding: 12px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -48,14 +53,27 @@ button {
 }
 
 button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #45a049; /* Darker green on hover for contrast */
 }
 
 /* Style error messages */
 ul {
-    color: red; /* Red text for errors */
+    color: #ff6b6b; /* Softer red for error messages */
 }
 
-.form-input{
-    font-size: xx-large;
+/* Font size for specific form inputs */
+.form-input {
+    font-size: large; /* Changed from xx-large to large for a more balanced look */
+}
+
+detail-container img{
+    max-width: 100%; /* Ensures the image doesn't exceed the container width */
+    height: auto; /* Keeps the aspect ratio intact */
+    max-height: 500px; /* Sets a maximum height */
+    object-fit: cover; /* Ensures the image doesn't distort and fits nicely */
+    margin: 20px 0; /* Adds some spacing around the image */
+}
+detail-container{
+    background-color: transparent;
+    margin: 30px auto;
 }
