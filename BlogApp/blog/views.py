@@ -74,4 +74,8 @@ def create_comment(request,blog_id):
         form = CommentForm()
     return render(request,'blog/blog_detail.html',{'form':form,'blog':blog,'comment':comment})
     
-    
+
+@login_required
+def profile_view(request):
+    blogs = Blog.objects.filter(user=request.user).order_by('-created_at')
+    return render(request,'blog/profile.html',{'blogs':blogs})
