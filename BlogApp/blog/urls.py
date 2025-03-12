@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:blog_id>/edit',views.edit_blog, name="edit_blog"),
     path('<int:blog_id>/delete',views.delete_blog, name="delete_blog"),
     path('<int:blog_id>/comment', views.create_comment, name='create_comment'),
+    path('profile/',views.profile_view, name='profile_view')
 ]

@@ -4,8 +4,8 @@ from .forms import UserRegistrationForm
 from django.contrib.auth import login,logout
 from django.contrib import messages
 
-def home(request):
-    return render(request,"layout.html")
+def welcome(request):
+    return render(request,"blog/welcome.html")
 
 
 

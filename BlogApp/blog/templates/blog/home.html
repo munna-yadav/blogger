@@ -4,14 +4,18 @@
 
 {% block title %}Home{% endblock title %}
 
-{% block layout %}{% endblock layout %}
 
 {% block content %}
 
 {% if blogs|length == 0 %}
   <div class="text-center mt-5">
     <p>No blogs yet. Start your blogging journey!</p>
-    <a href="{% url 'create_blog' %}" class="btn btn-primary">Create Your First Blog</a>
+    {% if user.is_authenticated %}
+      <a href="{% url 'create_blog' %}" class="btn btn-primary">Create Your First Blog</a>
+    {% else %} 
+    {% block layout %}{% endblock layout %}
+    {% endif %}
+    
   </div>
 {% else %}
   <div class="container-row d-flex gap-3 flex-wrap">
