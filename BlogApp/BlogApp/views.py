@@ -5,6 +5,8 @@ from django.contrib.auth import login,logout
 from django.contrib import messages
 
 def welcome(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request,"blog/welcome.html")
 
 
