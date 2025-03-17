@@ -1,23 +1,39 @@
 {% extends "layout.html" %}
+{% load widget_tweaks %}
+{% block title %}Create Blog{% endblock title %}
 
-{% block title %}Create Blog{% endblock title %}Create Blog
 {% block content %}
-<h1  class=" text-center mt-10" >create your blog</h1>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Create Your Blog</h1>
 
-<form method="post" enctype="multipart/form-data" >
+  <form method="post" enctype="multipart/form-data" class="bg-dark text-white p-4 rounded shadow">
     {% csrf_token %}
-    <label for="title">Title</label><br>
-    {{form.title}}
-    <label for="theme">Short Description</label>
-    {{form.theme}}
-    <label for="description">Description</label>
-    {{form.description}}
-    <br>
-    <label for="image">image</label>
-    {{form.image}}
-    <button class="btn btn-primary" method="post">create</button>
-</form>
 
-<a href="{% url "home" %}"> back to home</a>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      {{ form.title|add_class:"form-control" }}
+    </div>
 
+    <div class="mb-3">
+      <label for="theme" class="form-label">Short Description</label>
+      {{ form.theme|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      {{ form.description|add_class:"form-control" }}
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      {{ form.image|add_class:"form-control" }}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Create</button>
+  </form>
+
+  <div class="text-center mt-3">
+    <a href="{% url 'home' %}" class="text-decoration-none text-info">← Back to Home</a>
+  </div>
+</div>
 {% endblock %}

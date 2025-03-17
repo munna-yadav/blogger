@@ -1,12 +1,78 @@
-{% extends "layout.html" %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #ffffff;
+        font-family: 'Segoe UI', sans-serif;
+      }
+      
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+      }
+      
+      .delete-card {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+      }
+      
+      .delete-card h4 {
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+      }
+      
+      .delete-card form {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      
+      .delete-card .btn {
+        padding: 0.6rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+      
+      .delete-card .btn-danger {
+        background-color: #dc3545;
+        color: white;
+      }
+      
+      .delete-card .btn-danger:hover {
+        background-color: #bb2d3b;
+      }
+      
+      .delete-card .btn-success {
+        background-color: #198754;
+        color: white;
+      }
+      
+      .delete-card .btn-success:hover {
+        background-color: #157347;
+      }
+      
+</style>
 
-{% block layout %}{% endblock layout %}
-
-{% block content %}
-        <h2 class="" >Are you sure You want to delete?</h2>
-        <form method="post">
-            {% csrf_token %}
-            <button class="btn btn-danger">Delete</button>
-            <a class="btn btn-sucess" href="{% url "home" %}">Cancel</a>
-        </form>
-{% endblock content %}
+<div class="container">
+    <div class="delete-card">
+      <h4>Are you sure you want to delete this blog?</h4>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'home' %}" class="btn btn-success">Cancel</a>
+      </form>
+    </div>
+  </div>
+  

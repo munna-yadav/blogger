@@ -1,31 +1,122 @@
 {% load static %}
-<link rel="stylesheet" href="{% static "style.css" %}">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+      }
+      
+      .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      .login-card {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .login-card h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      
+      .login-card label {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+      }
+      
+      .login-card input[type="text"],
+      .login-card input[type="password"] {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: #2b2b2b;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #fff;
+      }
+      
+      .login-card input[type="text"]:focus,
+      .login-card input[type="password"]:focus {
+        border-color: #0d6efd;
+        outline: none;
+      }
+      
+      .remember-me {
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .error-box {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background-color: #ff4d4d;
+        color: #fff;
+        border-radius: 4px;
+      }
+      
+      .login-card button {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 0.6rem;
+        background-color: #0d6efd;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .login-card button:hover {
+        background-color: #0b5ed7;
+      }
+      
+      .register-link {
+        text-align: center;
+        margin-top: 1rem;
+      }
+      
+      .register-link a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      
+</style>
+
 {% block content %}
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
 
-<h2>login here</h2>
+      <label for="username">Username</label>
+      {{ form.username }}
+      {{ form.username.errors }}
 
-<form method="post">
-    {% csrf_token %}
-    
-    <label for="username">Username</label>
-    {{ form.username }}
-    {{ form.username.errors }}
+      <label for="password">Password</label>
+      {{ form.password }}
+      {{ form.password.errors }}
 
-    <label for="password">Password</label>
-    {{ form.password }}
-    {{ form.password.errors }}
 
-    <div>
-        {{ form.remember_me }}
-    </div>
+      {% if form.non_field_errors %}
+        <div class="error-box">{{ form.non_field_errors }}</div>
+      {% endif %}
 
-    <button class="btn btn-primary">Login</button>
-    
-    {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-</form>
-<h3>Don't have an account? <a href="{% url "register" %}"><strong>Register here</strong></a></h3>
+      <button type="submit">Login</button>
+    </form>
+    <p class="register-link">Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+  </div>
+</div>
 {% endblock %}

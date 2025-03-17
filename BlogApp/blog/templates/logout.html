@@ -1,7 +1,52 @@
-{% load static %}
+<style>
 
-<link rel="stylesheet" href=" {% static "style.css" %} ">
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-<h2>logged out</h2>
-<p>you have been logged out <a href=" {% url "login" %} ">Login here</a> </p>
-<p>Go to Homepage <a href="{% url "welcome" %}">Home</a></p>
+    .logout-container {
+        text-align: center;
+        padding: 40px;
+        border-radius: 12px;
+        background-color: #1e1e1e;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+        max-width: 500px;
+        width: 90%;
+    }
+
+    .logout-container h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #ff6b6b;
+    }
+
+    .logout-container p {
+        font-size: 1.1rem;
+        margin: 10px 0;
+    }
+
+    .logout-container a {
+        color: #4dabf7;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .logout-container a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+
+<div class="logout-container">
+    <h2>Logged Out</h2>
+    <p>You have been logged out. <a href="{% url 'login' %}">Login here</a></p>
+    <p>Go to Homepage <a href="{% url 'welcome' %}">Home</a></p>
+</div>

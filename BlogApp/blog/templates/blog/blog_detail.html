@@ -1,51 +1,58 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 {% load static %}
-<link rel="stylesheet" href=" {% static 'style.css' %}">
-<link rel="shortcut icon" href="{{blog.image.url}}" type="image/x-icon">
+{% load widget_tweaks %}
 
-{% block title %}{{blog.title}}{% endblock title %}
+{% block title %}{{ blog.title }}{% endblock title %}
+
 {% block content %}
+<div class="container my-5">
+  <div class="card bg-dark text-white shadow-lg">
+    {% if blog.image %}
+    <img src="{{ blog.image.url }}" class="card-img-top" alt="Blog Image" style="max-height: 350px; object-fit: cover;">
+    {% endif %}
 
-<div class="detail-container" style="margin:30px 100px; ">
-  <h1>{{ blog.title }}</h1>
-  <strong>By:{{ blog.user.username }}</strong>
-  <p class="card-subtitle mb-2 text-muted">
-    <strong>Published on:</strong> {{ blog.created_at|date:"F j, Y" }}
-  </p>  
-  {% if blog.image %}
-  <img src="{{blog.image.url}}" alt="image" class="image" style="max-height: 270px; object-fit: cover; " />
-  
-  {% endif %}
-  <p>{{ blog.description }}</p>
-  {% if blog.user == user %}
-  <a class="btn btn-secondary" href="{% url "edit_blog" blog.id %}" >Edit</a>
-  <a class="btn btn-danger" href="{% url "delete_blog" blog.id %}">Delete</a>
-  {% endif %}
-</div>
-<div class="comment">
-  <!-- Blog content here -->
+    <div class="card-body">
+      <h1 class="card-title">{{ blog.title }}</h1>
+      <p class="card-subtitle mb-2 text-muted">
+        <strong>By:</strong> {{ blog.user.username }} |
+        <strong>Published:</strong> {{ blog.created_at|date:"F j, Y" }}
+      </p>
+      <p class="card-text mt-3">{{ blog.description }}</p>
 
-  <h3>Comments:</h3>
-  <ul>
-    {% for comment in blog.comments.all %}
-    <div class="commenter">
-      <strong>{{comment.user.username}}-{{ comment.created_at|date:"F j," }}</strong>
+      {% if blog.user == user %}
+      <div class="d-flex gap-2 mt-4">
+        <a class="btn btn-secondary" href="{% url 'edit_blog' blog.id %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete</a>
+      </div>
+      {% endif %}
     </div>
-     {{ comment.comment }}
-    {% empty %}
-      <li>No comments yet.</li>
-    {% endfor %}
-  </ul>
+  </div>
 
- {% comment %} comment form {% endcomment %}
-  {% if user.is_authenticated %}
-    <form method="post" action ="{% url 'create_comment' blog.id %}">
+  <!-- Comments Section -->
+  <div class="mt-5">
+    <h3 class="text-white">Comments</h3>
+    <ul class="list-group list-group-flush mb-4">
+      {% for comment in blog.comments.all %}
+      <li class="list-group-item bg-dark text-white border-secondary">
+        <strong>{{ comment.user.username }}</strong> -
+        <small class="text-muted">{{ comment.created_at|date:"F j" }}</small>
+        <p class="mt-2">{{ comment.comment }}</p>
+      </li>
+      {% empty %}
+      <li class="list-group-item bg-dark text-white border-secondary">No comments yet.</li>
+      {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'create_comment' blog.id %}" class="card bg-dark text-white p-3 shadow">
       {% csrf_token %}
-      {{ form.as_p }}
+      <div class="form-group mb-3">
+        {{ form.comment.label_tag }}
+        {{ form.comment|add_class:"form-control bg-dark text-white border-secondary" }}
+      </div>
       <button class="btn btn-primary">Add Comment</button>
     </form>
-  {% endif %}
+    {% endif %}
+  </div>
 </div>
 {% endblock content %}
-
-{% block layout %}{% endblock layout %}

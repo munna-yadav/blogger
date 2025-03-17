@@ -1,13 +1,31 @@
 {% extends 'layout.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Edit Blog{% endblock title %}
 
 {% block content %}
-  <h2>Edit Blog Post</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save changes</button>
-    <a class="btn btn-sucess" href="{% url "home"  %}">Cancel</a>
-  </form>
-{% endblock %}
+<div class="container my-5">
+  <div class="card bg-dark text-white shadow p-4">
+    <h2 class="mb-4">Edit Blog Post</h2>
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
 
-{% block layout %}{% endblock layout %}
+      {% for field in form %}
+        <div class="mb-3">
+          {{ field.label_tag }}
+          {{ field|add_class:"form-control bg-dark text-white border-secondary" }}
+          {% for error in field.errors %}
+            <div class="text-danger small">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="d-flex gap-2 mt-4">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a class="btn btn-secondary" href="{% url 'home' %}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

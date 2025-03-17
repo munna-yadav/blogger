@@ -1,17 +1,18 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 text-white">
     <h2 class="mb-4">👤 {{ request.user.username }}'s Profile</h2>
 
     {% if blogs %}
         <div class="list-group">
             {% for blog in blogs %}
-                <div class="list-group-item bg-dark text-white mb-2 rounded shadow-sm">
-                    <div class="d-flex justify-content-between align-items-center">
+                <div class="list-group-item bg-dark border border-secondary text-white mb-3 rounded shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
                         <h5 class="mb-1">{{ blog.title }}</h5>
-                        <small>{{ blog.created_at|date:"M d, Y" }}</small>
+                        <small class="text-muted">{{ blog.created_at|date:"M d, Y" }}</small>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 d-flex gap-2">
                         <a href="{% url 'blog_detail_view' blog.id %}" class="btn btn-sm btn-outline-light">View</a>
                         <a href="{% url 'edit_blog' blog.id %}" class="btn btn-sm btn-outline-warning">Edit</a>
                         <a href="{% url 'delete_blog' blog.id %}" class="btn btn-sm btn-outline-danger">Delete</a>

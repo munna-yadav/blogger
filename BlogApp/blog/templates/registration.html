@@ -1,7 +1,94 @@
-{% load static %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+      }
+      
+      form {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 8px;
+        max-width: 400px;
+        margin: 5vh auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      
+      label {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: #2b2b2b;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #fff;
+      }
+      
+      input:focus {
+        border-color: #0d6efd;
+        outline: none;
+        background-color: #2f2f2f;
+      }
+      
+      .btn {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 0.6rem;
+        background-color: #0d6efd;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .btn:hover {
+        background-color: #0b5ed7;
+      }
+      
+      ul.errorlist,
+      .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 0.3rem 0;
+        color: #ff4d4d;
+        font-size: 0.9rem;
+      }
+      
+      .register-link {
+        text-align: center;
+        margin-top: 1rem;
+        color: #ccc;
+      }
+      
+      .register-link a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+      
+    
+    
+    
+</style>
 
-<link rel="stylesheet" href="{% static "style.css" %}">  
-{% block content %}
 
 <h2>Register Here</h2>
 <form method="post">
@@ -25,4 +112,5 @@
     
     <button class="btn btn-primary">Register</button>
 </form>
-{% endblock %}
+<p class="register-link">Have an account? <a href="{% url 'login' %}">Login here</a></p>
+
