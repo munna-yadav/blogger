@@ -9,8 +9,11 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 def home(request):
-    blogs = Blog.objects.all().order_by('-created_at')
-    return render(request,'blog/home.html',{"blogs":blogs})
+    if request.user.is_authenticated:
+        blogs = Blog.objects.all().order_by('-created_at')
+        return render(request,'blog/home.html',{"blogs":blogs})
+    else:
+        return redirect('welcome')
     
 @login_required
 def blog_detail(request, id):
