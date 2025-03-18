@@ -71,11 +71,11 @@ def create_comment(request,blog_id):
             comment.user = request.user
             comment.blog = blog
             comment.save()
-            return redirect('blog_detail',blog_id=blog.id)
+            return redirect('blog_detail_view',blog.id)
         
     else:
         form = CommentForm()
-    return render(request,'blog/blog_detail.html',{'form':form,'blog':blog,'comment':comment})
+    return render(request,'blog/blog_detail.html',{'form':form,'blog':blog,})
     
 
 @login_required

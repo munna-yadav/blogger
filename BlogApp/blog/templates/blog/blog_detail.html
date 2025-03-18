@@ -19,40 +19,45 @@
       </p>
       <p class="card-text mt-3">{{ blog.description }}</p>
 
-      {% if blog.user == user %}
-      <div class="d-flex gap-2 mt-4">
-        <a class="btn btn-secondary" href="{% url 'edit_blog' blog.id %}">Edit</a>
-        <a class="btn btn-danger" href="{% url 'delete_blog' blog.id %}">Delete</a>
-      </div>
-      {% endif %}
     </div>
   </div>
 
   <!-- Comments Section -->
-  <div class="mt-5">
-    <h3 class="text-white">Comments</h3>
-    <ul class="list-group list-group-flush mb-4">
+  <div class="mt-5 mb-5">
+    <h3 class="text-white mb-4">Comments</h3>
+    <div class="d-flex flex-column gap-3">
       {% for comment in blog.comments.all %}
-      <li class="list-group-item bg-dark text-white border-secondary">
-        <strong>{{ comment.user.username }}</strong> -
-        <small class="text-muted">{{ comment.created_at|date:"F j" }}</small>
-        <p class="mt-2">{{ comment.comment }}</p>
-      </li>
+      <div class="bg-dark text-white p-3 rounded border border-secondary shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-person-circle text-secondary"></i>
+            <strong>{{ comment.user.username }}</strong>
+          </div>
+          <small class="text-muted">{{ comment.created_at|date:"F j, Y - H:i" }}</small>
+        </div>
+        <p class="mb-0">{{ comment.comment }}</p>
+      </div>
       {% empty %}
-      <li class="list-group-item bg-dark text-white border-secondary">No comments yet.</li>
+      <div class="bg-dark text-white p-3 rounded border border-secondary text-center">
+        No comments yet.
+      </div>
       {% endfor %}
-    </ul>
+    </div>
+  </div>
+  
 
-    {% if user.is_authenticated %}
     <form method="post" action="{% url 'create_comment' blog.id %}" class="card bg-dark text-white p-3 shadow">
       {% csrf_token %}
       <div class="form-group mb-3">
-        {{ form.comment.label_tag }}
-        {{ form.comment|add_class:"form-control bg-dark text-white border-secondary" }}
+        <label for="id_comment" class="form-label">Your Comment</label>
+        <input name="comment" id="id_comment" 
+          class="form-control bg-dark text-white border-secondary"
+          placeholder="Write something..."></input>
       </div>
-      <button class="btn btn-primary">Add Comment</button>
+      <button type="submit" class="btn btn-primary">Add Comment</button>
     </form>
-    {% endif %}
+    
+    
   </div>
 </div>
 {% endblock content %}
