@@ -16,15 +16,21 @@
   {% else %}
     <div class="d-flex flex-wrap gap-4 justify-content-start">
       {% for blog in blogs %}
-      <div class="card bg-dark text-white border-secondary" style="width: 18rem; max-height: 430px;">
+      <div class="card bg-dark text-white border-secondary" style="width: 18rem; max-height: 460px;">
         {% if blog.image %}
         <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="card-img-top" style="max-height: 150px; object-fit: cover;">
         {% endif %}
+        
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ blog.title }}</h5>
-          <h6 class="card-subtitle mb-1 text-muted">By {{ blog.user }}</h6>
-          <p class="card-text small text-muted">{{ blog.created_at|date:"M j, Y" }}</p>
-          <p class="card-subtitle">{{ blog.theme|truncatewords:12 }}</p>
+
+          <div class="mb-2 text-muted small d-flex flex-column gap-1">
+            <span><i class="bi bi-person-circle"></i> {{ blog.user }}</span>
+            <span><i class="bi bi-calendar-date"></i> {{ blog.created_at|date:"M j, Y" }}</span>
+          </div>
+
+          <p class="card-subtitle mb-2">{{ blog.theme|truncatewords:12 }}</p>
+
           <a href="{% url 'blog_detail_view' blog.id %}" class="btn btn-outline-light mt-auto">Read More</a>
         </div>
       </div>
