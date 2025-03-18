@@ -1,79 +1,92 @@
-/* style.css */
-
-/* Style the body */
 body {
-    background-color: black;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 100vh; /* Full height of the viewport */
     margin: 0;
-}
-
-/* Style the form container */
-form {
-    margin-left: 10vw;
-    width: 40vw;
-    background-color: #000c2a; /* Darker background for dark theme */
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow for depth */
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .login-container {
     display: flex;
-    flex-direction: column;
-}
-
-/* Style input fields */
-input[type="text"],
-input[type="password"] {
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-card {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 8px;
     width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 1px solid #333; /* Darker border for input fields */
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .login-card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-card label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .login-card input[type="text"],
+  .login-card input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #2b2b2b;
+    border: 1px solid #444;
     border-radius: 4px;
-    background: #444; /* Slightly lighter background to distinguish input area */
-    color: #e0e0e0; /* Light text color for readability */
-}
-
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
-    color: #bbb; /* Lighter placeholder text */
-}
-
-/* Style the button */
-button {
-    background-color: #4caf50; /* Soft green background */
-    color: #fff; /* White text */
-    padding: 12px;
+    color: #fff;
+  }
+  
+  .login-card input[type="text"]:focus,
+  .login-card input[type="password"]:focus {
+    border-color: #0d6efd;
+    outline: none;
+  }
+  
+  .remember-me {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .error-box {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #ff4d4d;
+    color: #fff;
+    border-radius: 4px;
+  }
+  
+  .login-card button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #0d6efd;
     border: none;
     border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
     cursor: pointer;
-    width: 100%; /* Full width */
-}
-
-button:hover {
-    background-color: #45a049; /* Darker green on hover for contrast */
-}
-
-/* Style error messages */
-ul {
-    color: #ff6b6b; /* Softer red for error messages */
-}
-
-/* Font size for specific form inputs */
-.form-input {
-    font-size: large; /* Changed from xx-large to large for a more balanced look */
-}
-
-detail-container img{
-    max-width: 100%; /* Ensures the image doesn't exceed the container width */
-    height: auto; /* Keeps the aspect ratio intact */
-    max-height: 500px; /* Sets a maximum height */
-    object-fit: cover; /* Ensures the image doesn't distort and fits nicely */
-    margin: 20px 0; /* Adds some spacing around the image */
-}
-detail-container{
-    background-color: transparent;
-    margin: 30px auto;
-}
+  }
+  
+  .login-card button:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .register-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .register-link a {
+    color: #0d6efd;
+    text-decoration: none;
+  }
+  
