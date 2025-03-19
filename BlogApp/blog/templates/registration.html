@@ -1,116 +1,56 @@
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        background-color: #121212;
-        color: #ffffff;
-      }
-      
-      form {
-        background-color: #1e1e1e;
-        padding: 2rem;
-        border-radius: 8px;
-        max-width: 400px;
-        margin: 5vh auto;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-      
-      h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-      
-      label {
-        display: block;
-        margin-top: 1rem;
-        margin-bottom: 0.3rem;
-      }
-      
-      input[type="text"],
-      input[type="email"],
-      input[type="password"] {
-        width: 100%;
-        padding: 0.5rem;
-        background-color: #2b2b2b;
-        border: 1px solid #444;
-        border-radius: 4px;
-        color: #fff;
-      }
-      
-      input:focus {
-        border-color: #0d6efd;
-        outline: none;
-        background-color: #2f2f2f;
-      }
-      
-      .btn {
-        margin-top: 1.5rem;
-        width: 100%;
-        padding: 0.6rem;
-        background-color: #0d6efd;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      
-      .btn:hover {
-        background-color: #0b5ed7;
-      }
-      
-      ul.errorlist,
-      .errorlist {
-        list-style: none;
-        padding: 0;
-        margin: 0.3rem 0;
-        color: #ff4d4d;
-        font-size: 0.9rem;
-      }
-      
-      .register-link {
-        text-align: center;
-        margin-top: 1rem;
-        color: #ccc;
-      }
-      
-      .register-link a {
-        color: #0d6efd;
-        text-decoration: none;
-      }
-      
-      .register-link a:hover {
-        text-decoration: underline;
-      }
-      
-    
-    
-    
-</style>
+{% extends "layout.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
-<title>Register</title>
-<h2>Register Here</h2>
-<form method="post">
-    {% csrf_token %}
-    {% comment %} {{form.as_p}} {% endcomment %}
-    <label for="username">Username</label>
-    {{ form.username }}
-    {{ form.username.errors }}
+{% block content %}
+<div class="register-wrapper d-flex justify-content-center align-items-center vh-100">
+  <div class="card text-white p-4 w-100" style="max-width: 400px; background-color: #1e1e1e; box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+    <h2 class="text-center mb-4">Register</h2>
 
-    <label for="email">Email</label>
-    {{ form.email }}
-    {{ form.email.errors }}
+    <form method="post" novalidate>
+      {% csrf_token %}
 
-    <label for="password">Password</label>
-    {{ form.password1 }}
-    {{ form.password1.errors }}
+      <!-- Username -->
+      <div class="mb-3">
+        <label for="id_username" class="form-label">Username</label>
+        {% render_field form.username class="form-control bg-dark text-white border-secondary" %}
+        {{ form.username.errors }}
+      </div>
 
-    <label for="password2">Confirm Password</label>
-    {{ form.password2 }}
-    {{ form.password2.errors }}
-    
-    <button class="btn btn-primary">Register</button>
-</form>
-<p class="register-link">Have an account? <a href="{% url 'login' %}">Login here</a></p>
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="id_email" class="form-label">Email</label>
+        {% render_field form.email class="form-control bg-dark text-white border-secondary" %}
+        {{ form.email.errors }}
+      </div>
 
+      <!-- Password1 -->
+      <div class="mb-3">
+        <label for="id_password1" class="form-label">Password</label>
+        {% render_field form.password1 class="form-control bg-dark text-white border-secondary" %}
+        {{ form.password1.errors }}
+      </div>
+
+      <!-- Password2 -->
+      <div class="mb-3">
+        <label for="id_password2" class="form-label">Confirm Password</label>
+        {% render_field form.password2 class="form-control bg-dark text-white border-secondary" %}
+        {{ form.password2.errors }}
+      </div>
+
+      <!-- Non-field Errors -->
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+    </form>
+
+    <!-- Login Link -->
+    <p class="text-center mt-3">
+      Already have an account? <a href="{% url 'login' %}" class="text-primary">Login here</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
