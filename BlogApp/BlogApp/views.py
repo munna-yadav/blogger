@@ -30,4 +30,4 @@ def register(request):
 
 def custom_logout(request):
     logout(request)
-    return render(request, 'logout.html')
+    return render(request, 'blog/welcome.html')
